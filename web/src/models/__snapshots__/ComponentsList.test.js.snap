@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`can add new item(component) - 2 1`] = `
+Array [
+  Object {
+    "op": "replace",
+    "path": "/items/0/content",
+    "value": "new content",
+  },
+]
+`;
+
+exports[`can add new item(component) 1`] = `
+Object {
+  "items": Array [
+    Object {
+      "content": "new content",
+      "type": "textarea",
+    },
+  ],
+}
+`;
