@@ -1,0 +1,67 @@
+name: ideas
+description: Description of hello-world
+version: 0.0.1
+runtime: nodejs_v8
+
+classes:
+  ideas:
+    - name: title
+      type: string
+    - name: short_description
+      type: string
+    - name: slug
+      type: string
+    - name: author_id
+      type: integer
+    - name: is_removed
+      type: boolean
+    - name: version
+      type: string
+
+  component:
+    - name: component_type
+      type: string
+    - name: component_content
+      type: string
+    - name: order
+      type: integer
+    - name: slug
+      type: string
+    - name: ideaId
+      type: integer  
+
+endpoints:
+  add-idea:
+    description: Endpoint for saving ideas!
+    parameters:
+      title:
+        type: string
+        description: Title of new idea
+        example: Todo list
+      short_description:
+        type: string
+        description: Short description of idea
+        example: Write simple todo app
+    response:
+      success:
+        description: Success
+        parameters:
+          id: 
+            description: id of newly created idea
+          message:
+            description: confirm message
+        example: |
+          {
+            "message": "Idea added!"
+          }
+      fail:
+        exit_code: 400
+        description: Failed
+        parameters:
+          message:
+            description: Error message
+
+        example: |
+          {
+            "message": "You have to send idea "title" and "short description" arguments!"
+          }
