@@ -1,5 +1,5 @@
 import React from "react";
-import ProjectIdeaPage from "./components/pages/ProjectIdeaPage";
+import ProjectIdeaPage from "./pages/ProjectIdeaPage";
 
 const App = () => (
   <ProjectIdeaPage />

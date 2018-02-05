@@ -1,9 +1,10 @@
 import React from 'react';
+import {observer} from 'mobx-react'
 
 const Step = ({step, onChange}) => {
   return (
     <li>
-    {step.type === "textarea" && <textarea value={step.content}></textarea>}
+    {step.type === "textarea" && <textarea value={step.content}/>}
     {step.type === "image" && <input type="file" onChange={onChange} name="pic" accept="image/*"/>}
     {step.type === "title" && <input type="text" onChange={onChange} value={step.content} />}
     </li>
@@ -11,7 +12,7 @@ const Step = ({step, onChange}) => {
   )
 }
 
-const ProjectIdeaBody = ({components, onChange}) => {
+const ProjectIdeaComponentView = ({components, onChange}) => {
   const stepNode =  components.map((step) => {
     return (<Step step={step} onChange={onChange}/>)
   })
@@ -24,4 +25,4 @@ const ProjectIdeaBody = ({components, onChange}) => {
   </div>
 )};
 
-export default ProjectIdeaBody;
+export default observer(ProjectIdeaComponentView);

@@ -26,7 +26,8 @@ export const ComponentListItem = types.model({
 // })
 
 export const ComponentList = types.model({
-  items: types.optional( types.array(ComponentListItem),[])
+  items: types.optional( types.array(ComponentListItem),[]),
+  totalSteps: types.number
 })
 .actions(self => ({
   add(item) {
@@ -34,6 +35,11 @@ export const ComponentList = types.model({
   },
   changeContent(newContent) {
     self.content = newContent;
+  }
+}))
+.views(self => ({
+  get totalSteps() {
+    return self.items.reduce((sum)=>sum+1, 0)
   }
 }))
 

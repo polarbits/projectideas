@@ -68,3 +68,39 @@ it('can add new item(component) - 2',() => {
 
   expect(patches).toMatchSnapshot();
 })
+
+if("can calculate the total number of steps", () => {
+  const list = ComponentList.create({
+    items: [
+      {
+        type: 'textarea',
+        content: 'This is first task todo in this project'
+      },
+      {
+        type: 'textarea',
+        content: 'This is second task todo in this project'
+      },
+      {
+        type: 'textarea',
+        content: 'This is third task todo in this project'
+      },
+      {
+        type: 'textarea',
+        content: 'This is fourth task todo in this project'
+      }
+    ]
+  })
+
+  expect(list.totalSteps).toBe(4);
+  let changed = 0
+  reaction (()=> list.totalSteps, ()=>changed++)
+  expect(changed).toBe(0)
+  console.log(list.totalSteps)
+  list.item[0].changeContent("test")
+  expect(changed).toBe(0);
+  list.add({
+    type: 'textarea',
+    content: 'This is fifth task todo in this project'
+  })
+  expect(changed).toBe(1);
+})

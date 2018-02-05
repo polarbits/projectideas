@@ -1,5 +1,5 @@
 import React from "react";
-import ProjectIdeaBody from "../elements/ProjectIdeaBody";
+import ProjectIdeaComponentView from "../elements/ProjectIdeaComponentView";
 import InsertContentPanel from "../elements/InsertContentPanel";
 
 class ProjectIdeaForm extends React.Component {
@@ -64,7 +64,7 @@ class ProjectIdeaForm extends React.Component {
           <input type="text" name="title" id="title" value={data.title} onChange={this.onChange}></input>
 
 
-          <ProjectIdeaBody components={data.components} onChange={this.onChange}/>
+          <ProjectIdeaComponentView components={data.components} onChange={this.onChange}/>
           
           {/* content picker */}
 <InsertContentPanel addImage={this.addImage} addText={this.addText}  addTitle={this.addTitle}/>
