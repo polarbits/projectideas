@@ -1,5 +1,5 @@
 import {getSnapshot, onSnapshot, onPatch} from "mobx-state-tree"
-import {ComponentList,ComponentListItem} from "./ComponentList"
+import {ComponentStore,ComponentListItem} from "./ComponentList"
 
 it("can create a instance of a model", () => {
   const item = ComponentListItem.create({
@@ -13,7 +13,7 @@ it("can create a instance of a model", () => {
 })
 
 it("can create a component list", () => {
-  const list = ComponentList.create({
+  const list = ComponentStore.create({
     items: [
       {
         type: 'textarea',
@@ -25,7 +25,7 @@ it("can create a component list", () => {
 })
 
 it('can add new item(component)',() => {
-  const list = ComponentList.create()
+  const list = ComponentStore.create()
   list.add({
     type: "textarea",
     content: "test text content"
@@ -53,7 +53,7 @@ it('can add new item(component)',() => {
 })
 
 it('can add new item(component) - 2',() => {
-  const list = ComponentList.create()
+  const list = ComponentStore.create()
   list.add({
     type: "textarea",
     content: "test text content"
@@ -70,7 +70,7 @@ it('can add new item(component) - 2',() => {
 })
 
 if("can calculate the total number of steps", () => {
-  const list = ComponentList.create({
+  const list = ComponentStore.create({
     items: [
       {
         type: 'textarea',

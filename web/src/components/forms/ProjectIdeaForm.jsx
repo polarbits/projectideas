@@ -1,24 +1,10 @@
 import React from "react";
 import SyncanoClient from '@syncano/client'
 import {observer} from 'mobx-react';
-import ProjectIdeaComponentView from "../elements/ProjectIdeaComponentView";
+import ComponentView from "../elements/ComponentView";
 import InsertContentPanel from "../elements/InsertContentPanel";
 
 class ProjectIdeaForm extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          data: {
-            title: '',
-            description:'',
-            components: []
-
-          },
-          loading: false,
-          errors: {}
-        }
-    }
-
     onChange = e => {
         this.setState({
         data: { ...this.state.data, [e.target.name]: e.target.value }
@@ -72,21 +58,21 @@ class ProjectIdeaForm extends React.Component {
   }
 
     render() {
-      const {data, errors, loading } = this.state;
+      const { store } = this.props;
     return (
       <div className="">
         <form>
           <label>Title: </label>
-          <input type="text" name="title" id="title" value={data.title} onChange={this.onChange}></input>
+          <input type="text" name="title" id="title" value={store.title} onChange={e => store.changeTitle(e.target.value)}></input>
           <br />
           <label>Description: </label>
-          <input type="text" name="description" id="description" value={data.description} onChange={this.onChange}></input>
+          <input type="text" name="description" id="description" value={store.description} onChange={e => store.changeDesc(e.target.value)}></input>
 
 
-          <ProjectIdeaComponentView components={data.components} onChange={this.onChange}/>
+          <ComponentView components={store.components}/>
           
           {/* content picker */}
-<InsertContentPanel addImage={this.addImage} addText={this.addText}  addTitle={this.addTitle}/>
+<InsertContentPanel store={store} addImage={this.addImage} addText={this.addText}  addTitle={this.addTitle}/>
           {/* <button onClick={addStep}>+</button> */}
           <input type="submit" onClick={this.onSubmit}></input>
         </form>

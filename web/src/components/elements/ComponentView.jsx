@@ -1,5 +1,5 @@
 import React from 'react';
-import {observer} from 'mobx-react'
+// import {observer} from 'mobx-react'
 import ImageUpload from './ImageUpload';
 
 
@@ -16,10 +16,15 @@ const Step = ({step, onChange}) => {
 }
 
 
-const ProjectIdeaComponentView = ({components, onChange}) => {
-  const stepNode =  components.map((step) => {
+const ComponentView = ({components, onChange}) => {
+  let stepNode;
+  if(components.items.length === 0) {
+    stepNode=null;
+  }
+  else {
+  stepNode =  components.map((step) => {
     return (<Step step={step} onChange={onChange}/>)
-  })
+  })}
 
   return (
   <div className="">
@@ -29,4 +34,4 @@ const ProjectIdeaComponentView = ({components, onChange}) => {
   </div>
 )};
 
-export default (ProjectIdeaComponentView);
+export default (ComponentView);

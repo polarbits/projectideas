@@ -5,7 +5,7 @@ export const component = {
   "content": 'This is first task todo in this project'
 }
 
-export const ComponentListItem = types.model({
+export const ComponentItem = types.model({
   type: types.string,
   content: types.optional(types.string,"")
 })
@@ -25,16 +25,24 @@ export const ComponentListItem = types.model({
   // return {setType}
 // })
 
-export const ComponentList = types.model({
-  items: types.optional( types.array(ComponentListItem),[]),
-  totalSteps: types.number
+export const ComponentStore = types.model({
+  items: types.optional( types.array(ComponentItem),[])
 })
 .actions(self => ({
   add(item) {
-    self.items.push(item)
+    self.items.push(item);
   },
-  changeContent(newContent) {
-    self.content = newContent;
+  addImageComponent(){
+    const imageItem = ComponentItem.create({type: "image"});
+    self.items.push(imageItem);
+  },
+  addTextareaComponent(){
+    const textareaItem = ComponentItem.create({type: "textarea"});
+    self.items.push(textareaItem);
+  },
+  addTextComponent(){
+    const textItem = ComponentItem.create({type: "title"});
+    self.items.push(textItem);
   }
 }))
 .views(self => ({
