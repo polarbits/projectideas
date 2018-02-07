@@ -1,17 +1,17 @@
 import React from 'react';
+import {observer} from 'mobx-react'
 
 const InsertContentPanel = ({store, addImage, addText, addTitle}) => {
-  console.log(store.components)
     return (
       <div>
   <ul>
-    <li><button onClick={store.components.addImageComponent()}>Image</button></li>
-    <li><button onClick={store.components.addTextareaComponent()}>Text</button></li>
-    <li><button onClick={store.components.addTextComponent()}>Title</button></li>
+    <li><button onClick={e => {e.preventDefault(); store.components.addImageComponent();}}>Image</button></li>
+    <li><button onClick={e => {e.preventDefault(); store.components.addTextareaComponent();}}>Text</button></li>
+    <li><button onClick={e => {e.preventDefault(); store.components.addTextComponent();}}>Title</button></li>
   </ul>
 </div>
 )}
 
 
-export default InsertContentPanel;
+export default observer(InsertContentPanel);
 

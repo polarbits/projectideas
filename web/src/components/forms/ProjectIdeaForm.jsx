@@ -69,15 +69,11 @@ class ProjectIdeaForm extends React.Component {
           <input type="text" name="description" id="description" value={store.description} onChange={e => store.changeDesc(e.target.value)}></input>
 
 
-          <ComponentView components={store.components}/>
+          <ComponentView  store={store}/>
           
-          {/* content picker */}
-<InsertContentPanel store={store} addImage={this.addImage} addText={this.addText}  addTitle={this.addTitle}/>
-          {/* <button onClick={addStep}>+</button> */}
+          <InsertContentPanel store={store} addImage={this.addImage} addText={this.addText}  addTitle={this.addTitle}/>
           <input type="submit" onClick={this.onSubmit}></input>
         </form>
-        {/* //form //tytul //przycisk dodajacy do state nowy item w miejscu z jego
-        id //component_item renderowanie jesli jakis jest */}
       </div>
     );
   }
