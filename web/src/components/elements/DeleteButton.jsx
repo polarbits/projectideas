@@ -3,14 +3,15 @@ import {observer} from 'mobx-react'
 import PropTypes from 'prop-types'; 
 import DeleteButton from './DeleteButton'; 
 
-const TextboxInput = ({step,itemIndex}) => (
+const DeleteButton = (itemIndex) => (
   <div className="">
-    <input type="text" value={step.content}  onChange={e => step.changeContent(e.target.value)} />
-    <DeleteButton step={step} itemIndex={itemIndex}/>
+    <button onClick={e=>{
+      e.preventDefault();
+       }}></button>
   </div>
 );
 
-TextboxInput.propTypes = {
+DeleteButton.propTypes = {
   step: PropTypes.shape({
     type: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired
@@ -18,4 +19,5 @@ TextboxInput.propTypes = {
   itemIndex: PropTypes.number.isRequired
 }
 
-export default observer(TextboxInput);
+
+export default observer(DeleteButton);
