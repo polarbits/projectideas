@@ -7,7 +7,7 @@ export const component = {
 
 export const ComponentListItem = types.model({
   type: types.string,
-  content: types.string
+  content: types.optional(types.string,"")
 })
 .actions(self => ({
   changeType(newType){

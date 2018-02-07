@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@syncano/client@^0.8.0-alpha.617377ac":
-  version "0.8.0-alpha.617377ac"
-  resolved "https://registry.yarnpkg.com/@syncano/client/-/client-0.8.0-alpha.617377ac.tgz#04c51536b62fa16b9a81326338cc3a5aab2fc6b8"
+"@syncano/client@^0.8.0-alpha.d78b1ca5":
+  version "0.8.0-alpha.d78b1ca5"
+  resolved "https://registry.yarnpkg.com/@syncano/client/-/client-0.8.0-alpha.d78b1ca5.tgz#dcd2ad226d141966bf2517ab8527353f59883974"
   dependencies:
     axios "^0.15.3"
 

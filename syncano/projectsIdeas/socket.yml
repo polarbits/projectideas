@@ -1,4 +1,4 @@
-name: ideas
+name: projectsIdeas
 description: Description of hello-world
 version: 0.0.1
 runtime: nodejs_v8
@@ -64,4 +64,38 @@ endpoints:
         example: |
           {
             "message": "You have to send idea "title" and "short description" arguments!"
+          }
+          
+          
+  add-component:
+    description: Endpoint for saving new/update components!
+    parameters:
+      component_type:
+        type: string
+        description: type of component
+        example: textarea
+      component_content:
+        type: string
+        description: content of component
+        example: The first step is to create project
+    response:
+      success:
+        description: Success
+        parameters:
+          message:
+            description: confirm message
+        example: |
+          {
+            "message": "Component added!"
+          }
+      fail:
+        exit_code: 400
+        description: Failed
+        parameters:
+          message:
+            description: Error message
+
+        example: |
+          {
+            "message": "You have to send component data!"
           }
