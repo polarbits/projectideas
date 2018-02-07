@@ -1,15 +1,18 @@
 import React from 'react';
 import {observer} from 'mobx-react'
 import ImageUpload from './ImageUpload';
+import TextareaInput from './TextareaInput'
+import TextboxInput from './TextboxInput'
+import Constants from '../../Constants'
 
 
-const Step = ({step}) => {
+const Step = ({step,itemIndex}) => {
   return (
     <li>
-    {step.type === "textarea" && <textarea value={step.content}/>}
-    {step.type === "image" && <ImageUpload/>}
+    {step.type === Constants.ComponentTextareaType && <TextareaInput step={step} itemIndex={itemIndex} /> }
+    {step.type === Constants.ComponentImageType && <ImageUpload/>}
     {/* {step.type === "image" && <input type="file" onChange={onChange} name="pic" accept="image/*"/>} */}
-    {step.type === "title" && <input type="text" value={step.content} />}
+    {step.type === Constants.ComponentTitleType && <TextboxInput  step={step} itemIndex={itemIndex} /> }
     </li>
     // <li><input type={step.type}>step.content</input></li>
   )
@@ -23,8 +26,9 @@ const ComponentView = ({store}) => {
     stepNode=null;
   }
   else {
-  stepNode =  store.components.items.map((step) => {
-    return (<Step step={step}/>)
+    // TODO: Add key to mapped items
+  stepNode =  store.components.items.map((step,index) => {
+    return (<Step step={step} itemIndex={index}/>)
   })}
 
   return (

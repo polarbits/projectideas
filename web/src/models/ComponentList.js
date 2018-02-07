@@ -1,4 +1,5 @@
 import {types} from "mobx-state-tree";
+import Constants from '../Constants'
 
 export const component = {
   "type": 'textarea',
@@ -33,16 +34,19 @@ export const ComponentStore = types.model({
     self.items.push(item);
   },
   addImageComponent(){
-    const imageItem = ComponentItem.create({type: "image"});
+    const imageItem = ComponentItem.create({type: Constants.ComponentImageType});
     self.items.push(imageItem);
   },
   addTextareaComponent(){
-    const textareaItem = ComponentItem.create({type: "textarea"});
+    const textareaItem = ComponentItem.create({type: Constants.ComponentTextareaType});
     self.items.push(textareaItem);
   },
   addTextComponent(){
-    const textItem = ComponentItem.create({type: "title"});
+    const textItem = ComponentItem.create({type: Constants.ComponentTitleType});
     self.items.push(textItem);
+  },
+  delete(itemIndex){
+    self.items.splice(itemIndex,1);
   }
 }))
 .views(self => ({
