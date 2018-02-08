@@ -1,16 +1,15 @@
 import React from 'react';
-import {observer} from 'mobx-react'
+import {observer,inject} from 'mobx-react'
 
-const InsertContentPanel = ({store, addImage, addText, addTitle}) => {
-    return (
+const InsertContentPanel = inject("store")(observer(({store}) => (
       <div>
   <ul>
-    <li><button onClick={e => {e.preventDefault(); store.components.addImageComponent();}}>Image</button></li>
-    <li><button onClick={e => {e.preventDefault(); store.components.addTextareaComponent();}}>Text</button></li>
-    <li><button onClick={e => {e.preventDefault(); store.components.addTextComponent();}}>Title</button></li>
+    <li><button onClick={e => {e.preventDefault(); store.projectIdeaStore.components.addImageComponent();}}>Image</button></li>
+    <li><button onClick={e => {e.preventDefault(); store.projectIdeaStore.components.addTextareaComponent();}}>Text</button></li>
+    <li><button onClick={e => {e.preventDefault(); store.projectIdeaStore.components.addTextComponent();}}>Title</button></li>
   </ul>
 </div>
-)}
+)))
 
 
 export default observer(InsertContentPanel);

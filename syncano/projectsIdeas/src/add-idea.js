@@ -8,6 +8,7 @@ export default (ctx) => {
 
   if (ctx.args.title && ctx.args.short_description) {
     console.log('add-idea socket hit')
+    //add slug https://github.com/dodo/node-slug
     data.ideas.create({title: ctx.args.title, short_description: ctx.args.short_description})
     .then(newIdea=> {
      console.log(newIdea)

@@ -1,5 +1,5 @@
 import React from 'react';
-import {observer} from 'mobx-react'
+import {observer,inject} from 'mobx-react'
 import ImageUpload from './ImageUpload';
 import TextareaInput from './TextareaInput'
 import TextboxInput from './TextboxInput'
@@ -19,15 +19,15 @@ const Step = ({step,itemIndex}) => {
 }
 
 
-const ComponentView = ({store}) => {
+const ComponentView = inject("store")(observer(({store}) => {
   let stepNode;
-  console.log(store.components.items.length)
-  if(store.components.items.length === 0) {
+  console.log(store.projectIdeaStore.components.items.length)
+  if(store.projectIdeaStore.components.items.length === 0) {
     stepNode=null;
   }
   else {
     // TODO: Add key to mapped items
-  stepNode =  store.components.items.map((step,index) => {
+  stepNode =  store.projectIdeaStore.components.items.map((step,index) => {
     return (<Step step={step} itemIndex={index}/>)
   })}
 
@@ -37,6 +37,6 @@ const ComponentView = ({store}) => {
       {stepNode}
     </ol>
   </div>
-)};
+)}));
 
-export default observer(ComponentView);
+export default ComponentView;
