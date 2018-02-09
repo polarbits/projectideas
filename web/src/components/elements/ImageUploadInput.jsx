@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 import styles from '../../styles/ImageUploadStyles.css'
 import DeleteButton from './DeleteButton'; 
 import {ReorderButtonUp,ReorderButtonDown} from './ReorderButtons'
 
 
-export default class ImageUploadInput extends React.Component {
+class ImageUploadInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {file: '',imagePreviewUrl: ''};
@@ -19,12 +20,12 @@ export default class ImageUploadInput extends React.Component {
   handleImageChange(e) {
     e.preventDefault();
 
-    let reader = new FileReader();
-    let file = e.target.files[0];
+    const reader = new FileReader();
+    const file = e.target.files[0];
 
     reader.onloadend = () => {
       this.setState({
-        file: file,
+        file,
         imagePreviewUrl: reader.result
       });
     }
@@ -63,3 +64,8 @@ export default class ImageUploadInput extends React.Component {
   }
 }
   
+ImageUploadInput.propTypes = {
+  itemIndex: PropTypes.string.isRequired
+}
+
+export default ImageUploadInput

@@ -15,11 +15,7 @@ const DeleteButton = inject("store")(
 );
 
 DeleteButton.propTypes = {
-  step: PropTypes.shape({
-    type: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired
-  }).isRequired,
   itemIndex: PropTypes.number.isRequired
 };
 
-export default observer(DeleteButton);
+export default DeleteButton;

@@ -12,5 +12,5 @@ const InsertContentPanel = inject("store")(observer(({store}) => (
 )))
 
 
-export default observer(InsertContentPanel);
+export default InsertContentPanel;
 

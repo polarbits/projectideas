@@ -26,4 +26,4 @@ TextareaInput.propTypes = {
   itemIndex: PropTypes.number.isRequired
 };
 
-export default observer(TextareaInput);
+export default TextareaInput;
