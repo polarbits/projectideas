@@ -1,8 +1,10 @@
 import React from 'react';
 import styles from '../../styles/ImageUploadStyles.css'
+import DeleteButton from './DeleteButton'; 
+import {ReorderButtonUp,ReorderButtonDown} from './ReorderButtons'
 
 
-export default class ImageUpload extends React.Component {
+export default class ImageUploadInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {file: '',imagePreviewUrl: ''};
@@ -32,6 +34,7 @@ export default class ImageUpload extends React.Component {
 
   render() {
     let {imagePreviewUrl} = this.state;
+    const {itemIndex} = this.props;
     let $imagePreview = null;
     if (imagePreviewUrl) {
       $imagePreview = (<img src={imagePreviewUrl} alt="img"/>);
@@ -48,6 +51,9 @@ export default class ImageUpload extends React.Component {
           <button className={styles.submitButton}
             type="submit" 
             onClick={(e)=>this.handleSubmit(e)}>Upload Image</button>
+            <ReorderButtonUp itemIndex={itemIndex}/>
+            <ReorderButtonDown  itemIndex={itemIndex}/>
+            <DeleteButton itemIndex={itemIndex}/>
         </form>
         <div className={styles.imgPreview}>
           {$imagePreview}

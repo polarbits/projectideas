@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import {types} from "mobx-state-tree";
 import Constants from '../Constants'
 
@@ -19,13 +20,6 @@ export const ComponentItem = types.model({
   },
 }))
   
-  // {
-  // function setType(newType) {
-  //   self.type = newType
-  // }
-  // return {setType}
-// })
-
 export const ComponentStore = types.model({
   items: types.optional( types.array(ComponentItem),[])
 })
@@ -47,6 +41,38 @@ export const ComponentStore = types.model({
   },
   delete(itemIndex){
     self.items.splice(itemIndex,1);
+  },
+  moveDown(itemIndex) {
+    if(self.items.length<2){return}
+    if(itemIndex>=self.items.length-1){return}
+    const reorderArray = new Array(self.items.length);
+    for (let i = 0; i < self.items.length; i++) {
+      reorderArray[i] = {
+        type:self.items[i].type,
+        content: self.items[i].content
+      } ;
+    }
+    const tempItem = reorderArray[itemIndex+1];
+    reorderArray[itemIndex+1] = reorderArray[itemIndex];
+    reorderArray[itemIndex] = tempItem;
+
+    self.items = reorderArray;
+  },
+  moveUp(itemIndex) {
+    if(self.items.length<2){return}
+    if(itemIndex<1){return}
+    const reorderArray = new Array(self.items.length);
+    for (let i = 0; i < self.items.length; i++) {
+      reorderArray[i] = {
+        type:self.items[i].type,
+        content: self.items[i].content
+      } ;
+    }
+    const tempItem = reorderArray[itemIndex-1];
+    reorderArray[itemIndex-1] = reorderArray[itemIndex];
+    reorderArray[itemIndex] = tempItem;
+
+    self.items = reorderArray;
   }
 }))
 .views(self => ({

@@ -1,13 +1,26 @@
-import React from 'react';
-import {observer} from 'mobx-react'
-import PropTypes from 'prop-types'; 
-import DeleteButton from './DeleteButton'; 
+import React from "react";
+import { observer, inject } from "mobx-react";
+import PropTypes from "prop-types";
+import DeleteButton from "./DeleteButton";
+import { ReorderButtonUp, ReorderButtonDown } from "./ReorderButtons";
 
-const TextboxInput = ({step,itemIndex}) => (
-  <div className="">
-    <input type="text" value={step.content}  onChange={e => step.changeContent(e.target.value)} />
-    <DeleteButton step={step} itemIndex={itemIndex}/>
-  </div>
+const TextboxInput = inject("store")(
+  observer(({ store, itemIndex }) => (
+    <div className="">
+      <input
+        type="text"
+        value={store.projectIdeaStore.components.items[itemIndex].content}
+        onChange={e =>
+          store.projectIdeaStore.components.items[itemIndex].changeContent(
+            e.target.value
+          )
+        }
+      />
+      <ReorderButtonUp itemIndex={itemIndex} />
+      <ReorderButtonDown itemIndex={itemIndex} />
+      <DeleteButton itemIndex={itemIndex} />
+    </div>
+  ))
 );
 
 TextboxInput.propTypes = {
@@ -16,6 +29,6 @@ TextboxInput.propTypes = {
     content: PropTypes.string.isRequired
   }).isRequired,
   itemIndex: PropTypes.number.isRequired
-}
+};
 
-export default observer(TextboxInput);
+export default TextboxInput;

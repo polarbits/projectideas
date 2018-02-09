@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import {types} from "mobx-state-tree";
 import {ComponentStore} from "./ComponentList"
 
