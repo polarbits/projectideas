@@ -11,11 +11,12 @@ export default (ctx) => {
     //add slug https://github.com/dodo/node-slug
     data.ideas.create({title: ctx.args.title, short_description: ctx.args.short_description})
     .then(newIdea=> {
-     console.log(newIdea)
+      console.log(newIdea.id);
+    response.json({ideaId:newIdea.id},200)
     })
-    .then(() =>
-    response.json({message:'Idea added'},200)
-  )
+    // .then(() =>
+    // response.json({message:'Idea added'},200)
+  // )
   } else {
     response.json({
       message: 'You have to send "title" and "short_description" arguments!'

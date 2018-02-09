@@ -15,7 +15,9 @@ class ProjectIdeaForm extends React.Component {
     .then((res)=> {
       console.log(res);
       store.projectIdeaStore.components.items.forEach((item)=> {
-        s.post('projectsideas/add-component', {component_type: item.type, component_content: item.content} )
+        s.post('projectsideas/add-component', {component_type: item.type, component_content: item.content, ideaId: res.ideaId} ).then((rez)=> {
+          console.log(rez);
+        })
       })
     })
   }
